@@ -1,0 +1,56 @@
+#import "${controller.name}.h"
+@interface ${controller.name} ()
+#foreach($field in $controller.fields)##		
+#if($field.publicField == false)##
+#parse( "${field.fieldTemplatePath}" )##
+#end##
+#end##
+
+@implementation ${controller.name}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    
+}
+//页面刚进来调用
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
+//初始化视图
+-(void)initSubViews{   
+    
+#foreach($field in $controller.fields)##
+#if($field.position)##
+_${field.cname} = [[${field.ctype} alloc] initWithFrame:CGRectMake(${field.position.x}, ${field.position.y}, ${field.position.width}, ${field.position.height})];##
+#end##
+
+#end  
+  
+  
+ 
+}
+
+//添加视图到主页面
+-(void)layoutSubviews{
+ #foreach($field in $controller.fields)##	
+[self.view addSubview:self.${field.cname}];##	
+ #end##
+
+}
+
+
+#foreach($field in $controller.fields)##
+
+-(${field.ctype} *)${field.cname}{##
+if (!_${field.cname}) {
+    _${field.cname} = [[${field.ctype} alloc] init];
+    #if($field.color)##
+    _${field.cname}.backgroundColor = [UIColor ${field.color}];
+    #end##
+}
+return _${field.cname};
+}
+#end##
+
+@end

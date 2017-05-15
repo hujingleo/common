@@ -1,0 +1,53 @@
+
+#import "${view.name}${view.viewType}.h"
+
+@interface ${view.name}${view.viewType} ()
+
+
+@end
+
+@implementation ${view.name}${view.viewType}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {     
+    
+        #foreach($field in $view.fields)
+          //${field.comment}
+        #if($field.position)
+            self.${field.cname} = [[${field.ctype} alloc] initWithFrame:CGRectMake(${field.position.x}, ${field.position.y}, ${field.position.width}, ${field.position.height})];
+        #else
+            self.${field.cname} = [[${field.ctype} alloc] initWithFrame:CGRectMake(0,0,0, 0)];      
+        #end
+           self.${field.cname}.font = [UIFont systemFontOfSize:12.0f];
+             #if($field.color)
+           self.${field.cname}.textColor = [UIColor ${field.color}];
+            #else
+             self.${field.cname}.textColor = [UIColor whiteColor];
+            #end
+           
+           [self.contentView addSubview:self.${field.cname}];
+	
+        #end      
+        
+    }
+    return self;
+}
+
+
+  #foreach($field in $view.fields)
+		
+				
+    -(${field.ctype} *)${field.cname}{
+    if (!_${field.cname}) {
+        _${field.cname} =[[${field.ctype} alloc] init];
+    }
+    return _${field.cname};
+}
+	
+        #end   
+
+
+
+@end

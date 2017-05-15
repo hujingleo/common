@@ -1,0 +1,41 @@
+#import "${service.name}Service.h"
+#foreach($interface in $service.interfaces)
+#import "${interface.modelType}.h"
+#end
+
+@implementation ${service.name}Service
+
+#foreach($interface in $service.interfaces)
+
++ (void)${interface.serviceMethod}:params:(NSDictionary *)params successBlock:(void (^)(id json))successBlock{
+ 
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager ${interface.httpMethod}:@"${interface.url}" parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *result  =[[ NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"result is %@",result);
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];        
+   
+        if (((NSNumber *)[dic objectForKey:@"status"]).intValue!= 200) {
+            
+            NSLog(@"请求失败");
+        }else{  
+             NSLog(@"请求成功");
+             
+            ${interface.modelType} * ${interface.modelName} = [${interface.modelType} mj_objectWithKeyValues:objectForKey:@"data"]];
+            successBlock(${interface.modelName});
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        
+        
+    }];
+     
+    
+    
+    
+}
+
+#end
+@end

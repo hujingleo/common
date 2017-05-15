@@ -1,0 +1,30 @@
+#set($total=${config.size()})##
+#set($indexTitle=0)##
+#set($modelClass=$projects.get(0).getClass())##
+#foreach($field in ${modelClass.getDeclaredFields()})##
+#if($config.containsKey($field.name))##
+#set($indexTitle=$indexTitle+1)##
+${config.get($field.name)}##
+#if($indexTitle < $total)##
+,##
+#end##
+#end##
+#end
+##内容
+
+#foreach($project in $projects)##
+#set($index=0)
+#foreach($field in ${modelClass.getDeclaredFields()})##
+#if($config.containsKey($field.name))##
+#set($index=$index+1)##
+${field.name}##
+#if($index < $total)##
+,##
+#end##
+#end##
+#end
+
+#end
+
+
+

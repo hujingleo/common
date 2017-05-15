@@ -1,0 +1,38 @@
+
+		
+						<definition name="/haichuan-audit-service/team/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/member/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/leave/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/late/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/vender/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/distributor/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+						<definition name="/haichuan-audit-service/storage/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+					

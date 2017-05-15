@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0"
+    xmlns:scallop="http://scallop/xmlns/sca/1.0"
+    targetNamespace="http://CarrotsReplayComponent" xmlns:sample="http://CarrotsReplayComponent" name="CarrotsReplayComponent">
+
+
+  <component name="CarrotsReplayComponent">
+    <implementation.spring location="META-INF/carrots-replay-home-service/applicationContext-server.xml" />
+  </component>
+  
+	  <service name="articleService" promote="CarrotsReplayComponent/articleService">
+    <interface.java interface="com.ptteng.carrots.replay.service.ArticleService"/> 
+    <scallop:binding.rmi host="localhost" port="10740" serviceName="ArticleRMIService"/>     
+  </service>
+	
+	
+	 
+  
+	
+
+
+</composite>
+

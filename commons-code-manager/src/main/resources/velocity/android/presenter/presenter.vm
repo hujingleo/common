@@ -1,0 +1,90 @@
+package ${project.packagePrefix}.presenter;
+import android.content.Intent;
+
+
+/**
+ * Created by ptteng on 15/12/11.
+ */
+public class ${}Presenter extends BasePresenter<LoginView> {
+
+    private static final String TAG = LoginPresenter.class.getSimpleName();
+
+    private NoticeNet noticeNet;
+    private SettingCache settingCache;
+    private LoginNet net;
+    private LoginCache cache;
+
+    public LoginPresenter(LoginView view){
+        super(view);
+    }
+
+    public void attemptLogin(String username, String password) {
+        net.attemptLogin(username, password, new TaskCallback<LoginEntity>() {
+            @Override
+            public void onSuccess(LoginEntity data) {
+                Logger.i(TAG, "success");
+                UserHelper.getInstance().setToken(data.getToken());
+                if(getView()!=null){
+                    getView().loginSuccess();
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                getView().loginFail(e.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void init() {
+        cache = new LoginCache();
+        net = new LoginNet();
+        noticeNet = new NoticeNet();
+        settingCache = new SettingCache();
+    }
+
+
+    public void getUpgrade(){
+        noticeNet.GetNewVersion(new TaskCallback<Upgrade>() {
+            @Override
+            public void onSuccess(Upgrade data) {
+                if(data!=null){
+                    Upgrade upgrade = settingCache.getUpgrade();
+                    Logger.d(TAG,"getUpgrade server:"+data);
+                    Logger.d(TAG,"getUpgrade local:"+upgrade);
+                    if(upgrade==null || upgrade.getVersionCode() != data.getVersionCode()){
+                        settingCache.saveUpgrade(data);
+                        upgrade = data;
+                    }
+                    if(upgrade.isNeedShown()){
+                        Logger.d(TAG,"getUpgrade need show:"+upgrade);
+                        if(getView()!=null){
+                            getView().showUpgrade(upgrade);
+                        }
+                    }
+                }else {
+                    Upgrade upgrade = settingCache.getUpgrade();
+                    if(upgrade!=null){
+                        if(upgrade.isNeedShown()){
+                            if(getView()!=null){
+                                getView().showUpgrade(upgrade);
+                            }
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onError(Exception e) {
+                Upgrade upgrade = settingCache.getUpgrade();
+                if(upgrade!=null){
+                    if(upgrade.isNeedShown()){
+                        if(getView()!=null){
+                            getView().showUpgrade(upgrade);
+                        }
+                    }
+                }
+            }
+        });
+    }
+}

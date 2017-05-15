@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common.iml" filepath="$PROJECT_DIR$/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-mongo-util/common-mongo-util.iml" filepath="$PROJECT_DIR$/common-mongo-util/common-mongo-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-search-util/common-search-util.iml" filepath="$PROJECT_DIR$/common-search-util/common-search-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-sms-util/common-sms-util.iml" filepath="$PROJECT_DIR$/common-sms-util/common-sms-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-storage-util/common-storage-util.iml" filepath="$PROJECT_DIR$/common-storage-util/common-storage-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-util/common-util.iml" filepath="$PROJECT_DIR$/common-util/common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-wx/common-wx.iml" filepath="$PROJECT_DIR$/common-wx/common-wx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-code-demo/commons-code-demo.iml" filepath="$PROJECT_DIR$/commons-code-demo/commons-code-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-code-manager/commons-code-manager.iml" filepath="$PROJECT_DIR$/commons-code-manager/commons-code-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-dao-util/commons-dao-util.iml" filepath="$PROJECT_DIR$/commons-dao-util/commons-dao-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-notice-util/commons-notice-util.iml" filepath="$PROJECT_DIR$/commons-notice-util/commons-notice-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-tag-lib/commons-tag-lib.iml" filepath="$PROJECT_DIR$/commons-tag-lib/commons-tag-lib.iml" />
+    </modules>
+  </component>
+</project>

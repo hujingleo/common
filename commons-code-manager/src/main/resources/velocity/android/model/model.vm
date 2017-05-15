@@ -1,0 +1,24 @@
+public class ${model.name} {
+
+#foreach($field in $model.fields)##
+    /**
+     *${field.comment}
+    */
+    private ${field.ctype} ${field.cname};
+#end##
+  
+#foreach($field in $model.fields)##
+   
+   public $field.ctype get$field.capitalize($field.cname)() {
+		return $field.cname;
+	}
+	
+	
+	public void set$field.capitalize($field.cname)($field.ctype $field.cname) {
+		this.$field.cname = $field.cname;
+	}
+
+#end##
+  
+ 
+}

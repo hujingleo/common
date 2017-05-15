@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0"
+    xmlns:scallop="http://scallop/xmlns/sca/1.0"
+    targetNamespace="http://HaichuanAuditComponent" xmlns:sample="http://HaichuanAuditComponent" name="HaichuanAuditComponent">
+
+
+  <component name="HaichuanAuditComponent">
+    <implementation.spring location="META-INF/haichuan-audit-service/applicationContext-server.xml" />
+  </component>
+  
+	  <service name="teamService" promote="HaichuanAuditComponent/teamService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.TeamService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="TeamRMIService"/>     
+  </service>
+	  <service name="memberService" promote="HaichuanAuditComponent/memberService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.MemberService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="MemberRMIService"/>     
+  </service>
+	  <service name="leaveService" promote="HaichuanAuditComponent/leaveService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.LeaveService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="LeaveRMIService"/>     
+  </service>
+	  <service name="lateService" promote="HaichuanAuditComponent/lateService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.LateService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="LateRMIService"/>     
+  </service>
+	  <service name="venderService" promote="HaichuanAuditComponent/venderService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.VenderService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="VenderRMIService"/>     
+  </service>
+	  <service name="distributorService" promote="HaichuanAuditComponent/distributorService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.DistributorService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="DistributorRMIService"/>     
+  </service>
+	  <service name="storageService" promote="HaichuanAuditComponent/storageService">
+    <interface.java interface="com.ptteng.haichuan.audit.service.StorageService"/> 
+    <scallop:binding.rmi host="localhost" port="10733" serviceName="StorageRMIService"/>     
+  </service>
+	
+	
+	 
+  
+	
+
+
+</composite>
+

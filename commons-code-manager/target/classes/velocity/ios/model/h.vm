@@ -1,0 +1,13 @@
+
+#import <Foundation/Foundation.h>
+
+@interface ${model.name} : NSObject
+
+
+#foreach($field in $model.fields)##
+#if($field.publicField == true)##
+#parse( "${field.fieldTemplatePath}" )##             
+#end##
+#end##
+
+@end

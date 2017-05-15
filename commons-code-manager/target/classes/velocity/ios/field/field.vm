@@ -1,0 +1,10 @@
+#if($interface.comment)##
+//${field.comment}
+#end##
+
+#if($field.baseType == true)##
+@property (strong, nonatomic) ${field.ctype}  ${field.cname};##
+#else##
+@property (strong, nonatomic) ${field.ctype} * ${field.cname};##
+#end##
+

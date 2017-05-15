@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>common</artifactId>
+		<groupId>ptteng</groupId>
+		<version>0.0.2</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>common-storage-util</artifactId>
+	<version>0.0.12</version>
+	<dependencies>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.4</version>
+		</dependency>
+		<!--腾讯云pom-->
+		<dependency>
+			<groupId>com.qcloud</groupId>
+			<artifactId>cos_api</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.ksyun</groupId>
+			<artifactId>ks3-kss-java-sdk</artifactId>
+			<version>0.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+
+
+		<!--阿里云存储-->
+		<dependency>
+		    <groupId>com.aliyun.oss</groupId>
+		    <artifactId>aliyun-sdk-oss</artifactId>
+		    <version>2.2.3</version>
+		</dependency>
+
+
+		<!--说明：腾讯云/阿里存储，在本地测试没问题，但是若要集成到其他项目中使用，可能会报错，找不到类
+		lookup/http相关的类，如果报这个错，请使用此项目的0.0.3版本0.07版本-->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.5.1</version>
+		</dependency>
+	
+
+        <dependency>
+			<groupId>ptteng</groupId>
+			<artifactId>wealth-fastdfs-core</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+
+</project>

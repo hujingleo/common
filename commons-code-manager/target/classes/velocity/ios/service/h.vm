@@ -1,0 +1,11 @@
+#import <Foundation/Foundation.h>
+
+@interface ${interface.name}Service : NSObject
+
+
+
+#foreach($interface in $service.interfaces)
++ (void)${interface.serviceMethod}:params:(NSDictionary *)params successBlock:(void (^)(id json))successBlock;
+#end
+
+@end

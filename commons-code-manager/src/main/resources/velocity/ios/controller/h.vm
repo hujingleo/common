@@ -1,0 +1,17 @@
+#import <UIKit/UIKit.h>
+@interface ${controller.name}Controller : BasicViewController
+
+
+
+#foreach($field in $controller.fields)	
+#if($field.publicField == true)
+#parse( "${field.fieldTemplatePath}" )              
+#end
+#end
+
+
+
+
+
+@end
+

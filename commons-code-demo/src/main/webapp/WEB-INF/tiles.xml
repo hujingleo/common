@@ -1,0 +1,8 @@
+
+		
+						<definition name="/carrots-replay-home-service/article/view/*" extends="root">
+		    <put-attribute name="right" value="/WEB-INF/pages/{0}.jsp" />
+		      <put-attribute name="title" value="地址" type="string" />
+	        </definition>
+	
+					

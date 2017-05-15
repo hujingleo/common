@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-mongo-util" />
+        <module name="common-search-util" />
+        <module name="common-sms-util" />
+        <module name="common-storage-util" />
+        <module name="common-util" />
+        <module name="common-wx" />
+        <module name="commons-code-demo" />
+        <module name="commons-code-manager" />
+        <module name="commons-dao-util" />
+        <module name="commons-notice-util" />
+        <module name="commons-tag-lib" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.6" />
+      <module name="common-mongo-util" target="1.6" />
+      <module name="common-search-util" target="1.6" />
+      <module name="common-sms-util" target="1.6" />
+      <module name="common-storage-util" target="1.6" />
+      <module name="common-util" target="1.6" />
+      <module name="common-wx" target="1.6" />
+      <module name="commons-code-demo" target="1.6" />
+      <module name="commons-code-manager" target="1.6" />
+      <module name="commons-dao-util" target="1.7" />
+      <module name="commons-notice-util" target="1.6" />
+      <module name="commons-tag-lib" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

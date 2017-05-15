@@ -1,0 +1,7 @@
+
+#foreach($interface in $interfaces)
+#if($interface.comment)
+//-- ${interface.comment} --
+#end
+\#define API_${interface.name}  [NSString stringWithFormat:@"${interface.url}?${interface.convert2IOSHttpKeyParameter()}",${interface.convert2IOSHttpValueParameter()}]
+#end

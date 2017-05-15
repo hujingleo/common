@@ -1,0 +1,275 @@
+package ${proejct.packagePrefix}.service;
+
+import android.content.Context;
+import android.util.Log;
+
+import ${project.packagePrefix}.${project.name}Application;
+import ${project.packagePrefix}.${interface.model};
+import com.sneagle.app.engine.net.NetworkRequest;
+import com.sneagle.app.engine.net.TaskCallback;
+
+import org.w3c.dom.ProcessingInstruction;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+
+/**
+ * Created by admin on 2015/12/13.
+ */
+public class LoginNet {
+
+    public void attemptLogin(String username, String password, TaskCallback<LoginEntity> callback) {
+        LoginTask task = new LoginTask(DrinkMeApplication.getAppContext(), callback);
+        task.setParams(username, password);
+        task.execute();
+    }
+
+    public void register(String phone, String verify, String pwd, String discount, TaskCallback<LoginEntity> callback) {
+        RegisteTask task = new RegisteTask(DrinkMeApplication.getAppContext(), callback);
+        task.setParams(phone, verify, pwd, discount);
+        task.execute();
+    }
+
+    public void getVerifyCode(String phone, String verifyType, TaskCallback<LoginEntity> callback) {
+        VerifyCodeTask task = new VerifyCodeTask(DrinkMeApplication.getAppContext(), callback);
+        Log.i("step 3 phoneNum = ", phone);
+        task.setParams(phone, verifyType);
+        task.execute();
+
+    }
+
+    public void getPasswd(String phone, String newPassword, String verifyCode, TaskCallback<LoginEntity> callback) {
+        ForGetPasswordTask task = new ForGetPasswordTask(DrinkMeApplication.getAppContext(), callback);
+        task.setParams(phone, newPassword, verifyCode);
+        task.execute();
+    }
+    public void feedback(String token,String content,TaskCallback<LoginEntity> callback){
+        feedbackTask task = new feedbackTask(DrinkMeApplication.getAppContext(),callback);
+        task.setParams(token,content);
+        task.execute();
+    }
+    private class feedbackTask extends BaseNetworkTask<LoginEntity> {
+        private String mToken;
+        private String mContent;
+
+        public feedbackTask(Context context, TaskCallback<LoginEntity> callback) {
+            super(context);
+            setCallback(callback);
+        }
+
+        public feedbackTask(Context context) {
+            super(context);
+        }
+
+        public void setParams(String token, String content) {
+            mContent = content;
+            mToken = token;
+        }
+
+        @Override
+        public Class<LoginEntity> getType() {
+            return LoginEntity.class;
+        }
+
+        @Override
+        public NetworkRequest buildRequest() {
+            String params = "";
+            try {
+                params = "?token=" + URLEncoder.encode(mToken, "UTF-8")
+                        + "&content=" + mContent;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            return this.getRequestBuilder().setUrl(DrinkApi.USER_FEED_BACK.getURL() + params).
+                    setMethod(DrinkApi.USER_FEED_BACK.getMethod()).build();
+        }
+    }
+
+
+    private class LoginTask extends BaseNetworkTask<LoginEntity> {
+        private String mUsername;
+        private String mPassword;
+
+        public LoginTask(Context context, TaskCallback<LoginEntity> callback) {
+            super(context);
+            setCallback(callback);
+        }
+
+        public LoginTask(Context context) {
+            super(context);
+        }
+
+        public void setParams(String username, String password) {
+            mUsername = username;
+            mPassword = password;
+        }
+
+        @Override
+        public Class<LoginEntity> getType() {
+            return LoginEntity.class;
+        }
+
+        @Override
+        public NetworkRequest buildRequest() {
+            String params = "";
+            try {
+                params = "mobile=" + URLEncoder.encode(mUsername, "UTF-8")
+                        + "&pwd=" + URLEncoder.encode(mPassword, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            return this.getRequestBuilder().setUrl(DrinkApi.LOGIN.getURL()).
+                    setMethod(DrinkApi.LOGIN.getMethod()).setPostBody(params).build();
+        }
+    }
+
+    private class RegisteTask extends BaseNetworkTask<LoginEntity> {
+        private String mPhone;
+        private String mVerify;
+        private String mPwd;
+        private String mDiscount;
+
+        public RegisteTask(Context context, TaskCallback<LoginEntity> callback) {
+            super(context);
+            setCallback(callback);
+        }
+
+        public RegisteTask(Context context) {
+            super(context);
+        }
+
+        public void setParams(String phone, String verify, String pwd, String discount) {
+            mPhone = phone;
+            mVerify = verify;
+            mPwd = pwd;
+            mDiscount = discount;
+            Log.i("mobile=",mPhone);
+            Log.i("verify=",mVerify);
+            Log.i("pwd=",mPwd);
+            Log.i("discount=",mDiscount);
+
+        }
+
+        @Override
+        public Class<LoginEntity> getType() {
+            return LoginEntity.class;
+        }
+
+        @Override
+        public NetworkRequest buildRequest() {
+            Map<String, String> map = new HashMap<>();
+            String pramas = "";
+            try {
+
+                pramas = "mobile=" + URLEncoder.encode(mPhone, "UTF-8") +
+                        "&pwd=" + URLEncoder.encode(mPwd,"UTF-8") +
+                        "&verify=" + URLEncoder.encode(mVerify,"UTF-8") +
+                        "&presentNum=" + URLEncoder.encode(mDiscount,"UTF-8");
+
+//
+//                map.put("mobile", URLEncoder.encode(mPhone, "UTF-8"));
+//                map.put("pwd", URLEncoder.encode(mPwd, "UTF-8"));
+//                map.put("verify", URLEncoder.encode(mVerify, "UTF-8"));
+//                map.put("presentNum", URLEncoder.encode(mDiscount, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return this.getRequestBuilder().setUrl(DrinkApi.REGISTER.getURL()).
+                    setMethod(DrinkApi.REGISTER.getMethod()).setPostBody(pramas).build();
+        }
+    }
+
+    private class VerifyCodeTask extends BaseNetworkTask<LoginEntity> {
+        String mPhone;
+        String mVerifyType;
+
+        public VerifyCodeTask(Context context, TaskCallback<LoginEntity> callback) {
+            super(context);
+            setCallback(callback);
+        }
+
+        public VerifyCodeTask(Context context) {
+            super(context);
+        }
+
+        public void setParams(String Phone, String verifyType) {
+            mPhone = Phone;
+            mVerifyType = verifyType;
+            Log.i("step 4 mobile = ", mPhone);
+            Log.i("step 4 type", mVerifyType);
+        }
+
+        @Override
+        public Class<LoginEntity> getType() {
+            return LoginEntity.class;
+        }
+
+        @Override
+        public NetworkRequest buildRequest() {
+            String pramas = "";
+            Map<String, String> map = new HashMap<>();
+            try {
+                pramas = "mobile=" + URLEncoder.encode(mPhone, "UTF-8") +
+                        "&type=" + URLEncoder.encode(mVerifyType, "UTF-8");
+//                map.put("mobile", URLEncoder.encode(mPhone, "UTF-8"));
+//                map.put("type", URLEncoder.encode(mVerifyType, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return this.getRequestBuilder().setUrl(DrinkApi.GETVERIFY.getURL()).
+                    setMethod(DrinkApi.GETVERIFY.getMethod()).setPostBody(pramas).build();
+        }
+    }
+
+    private class ForGetPasswordTask extends BaseNetworkTask<LoginEntity> {
+        String mPhone;
+        String mNewPassword;
+        String mVerifyCode;
+
+        public ForGetPasswordTask(Context context, TaskCallback<LoginEntity> callback) {
+            super(context);
+            setCallback(callback);
+        }
+
+        public ForGetPasswordTask(Context context) {
+            super(context);
+        }
+
+        public void setParams(String Phone, String newPassword, String verifyCode) {
+            mPhone = Phone;
+            mNewPassword = newPassword;
+            mVerifyCode = verifyCode;
+        }
+
+        @Override
+        public Class<LoginEntity> getType() {
+            return LoginEntity.class;
+        }
+
+        @Override
+        public NetworkRequest buildRequest() {
+            String pramas = "";
+            Map<String, String> map = new HashMap<>();
+            try {
+                pramas = "mobile=" + URLEncoder.encode(mPhone, "UTF-8") +
+                        "&newpwd=" + URLEncoder.encode(mNewPassword, "UTF-8") +
+                        "&verify=" + URLEncoder.encode(mVerifyCode, "UTF-8");
+
+//                map.put("mobile", URLEncoder.encode(mPhone, "UTF-8"));
+//                map.put("newpwd", URLEncoder.encode(mNewPassword, "UTF-8"));
+//                map.put("verify", URLEncoder.encode(mVerifyCode,"UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return this.getRequestBuilder().setUrl(DrinkApi.RESETPASSWD.getURL()).
+                    setMethod(DrinkApi.RESETPASSWD.getMethod()).setPostBody(pramas).build();
+        }
+    }
+
+
+}

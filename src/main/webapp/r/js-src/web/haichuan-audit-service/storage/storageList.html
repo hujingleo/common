@@ -1,0 +1,227 @@
+<div class="row pd-top-2">
+    <div class=" col-md-12 pd-top-2 pd-bottom-2  panel panel-default">
+        <form class="form-inline form-search" role="form">
+           
+           
+                        <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">自增长ID名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.id">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">库位名称名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.name">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">属性 (1本部库位、2二网库位、3临展库位)名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.attribute">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">经度名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.latitude">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">纬度名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.longitude">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">省名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.privince">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">市名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.city">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">详细地址名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.address">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">联系人名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.contactsName">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">联系人岗位名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.contactsPost">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">联系人电话名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.contactsPhone">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">内部备注名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.internalRemark">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">审计员备注名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.suditorRemark">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">活动开始时间 (当属性为临展车位时使用)名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.activityStartTime">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">活动结束时间 (当属性为临展车位时使用)名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.activityEndTime">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">状态 (1正常0禁用)名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.status">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">创建人ID名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.createBy">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">更新人ID名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.updateBy">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">数据更新时间名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.updateAt">
+            </div>
+                 
+                      <div class="form-group col-md-4 col-md-offset-1">
+                <label class="control-label">数据创建时间名称：</label>
+                <input type="text" class="form-control" ng-model="vm.params.createAt">
+            </div>
+                 
+                     
+         
+           
+            <div class="form-group col-md-6 col-md-offset-1">
+         
+                <button class="btn btn-primary pull-right"style="margin-right: 2%;"
+                        ng-click="vm.search()">查询
+                </button>
+                <button class="btn btn-primary pull-right"
+                        ng-if="vm.hasParent" ng-click="vm.research()"
+                        style="margin-right:2%;">重置
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-12 ">
+            <div class="  panel panel-default">
+                <div class="panel-heading">
+                
+                
+                    管理
+                    <div class="btn-group pull-right" ng-if="vm.params.id">
+                        <div class="btn btn-primary btn-xs" ng-if="globalPermission.created" ui-sref="field.storage()">
+                            <i class="fa fa-plus-square fa-fw"></i>
+                            新增
+                        </div>
+                    </div>
+           
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="panel-body">
+                    <ul class="ul-table-head row">
+                        <li>
+                        
+                            <div class="three1 text-center">序号</div>
+                                                                                           <div class="three1 text-center">自增长ID</div>  
+                                                                                                                           <div class="three1 text-center">库位名称</div>  
+                                                                                                                           <div class="three1 text-center">属性 (1本部库位、2二网库位、3临展库位)</div>  
+                                                                                                                           <div class="three1 text-center">经度</div>  
+                                                                                                                           <div class="three1 text-center">纬度</div>  
+                                                                                                                           <div class="three1 text-center">省</div>  
+                                                                                                                           <div class="three1 text-center">市</div>  
+                                                                                                                           <div class="three1 text-center">详细地址</div>  
+                                                                                                                           <div class="three1 text-center">联系人</div>  
+                                                                                                                           <div class="three1 text-center">联系人岗位</div>  
+                                                                                                                           <div class="three1 text-center">联系人电话</div>  
+                                                                                                                           <div class="three1 text-center">内部备注</div>  
+                                                                                                                           <div class="three1 text-center">审计员备注</div>  
+                                                                                                                           <div class="three1 text-center">活动开始时间 (当属性为临展车位时使用)</div>  
+                                                                                                                           <div class="three1 text-center">活动结束时间 (当属性为临展车位时使用)</div>  
+                                                                                                                           <div class="three1 text-center">状态 (1正常0禁用)</div>  
+                                                                                                                           <div class="three1 text-center">创建人ID</div>  
+                                                                                                                           <div class="three1 text-center">更新人ID</div>  
+                                                                                                                           <div class="three1 text-center">数据更新时间</div>  
+                                                                                                                           <div class="three1 text-center">数据创建时间</div>  
+                                                                                         <div class="three3 text-center">操作</div>
+                          
+                            
+                        </li>
+                    </ul>
+                    <ul class="ul-table" dnd-list="vm.list">
+                        <li ng-repeat="item in vm.list"
+                            dnd-draggable="item"
+                            dnd-moved="vm.list.splice(20, 1)"
+                            dnd-effect-allowed="move"
+                            dnd-selected="vm.list.selected = item"
+                            ng-class="{'selected': vm.list.selected === item}"
+                        >
+                            <div class="three1">{{20*1+1}}</div>
+                                                                                           <div class="three2">{{item.id}}</div>  
+                                                                                                                            <div class="three2">{{item.name}}</div>  
+                                                                                                                            <div class="three2">{{item.attribute}}</div>  
+                                                                                                                            <div class="three2">{{item.latitude}}</div>  
+                                                                                                                            <div class="three2">{{item.longitude}}</div>  
+                                                                                                                            <div class="three2">{{item.privince}}</div>  
+                                                                                                                            <div class="three2">{{item.city}}</div>  
+                                                                                                                            <div class="three2">{{item.address}}</div>  
+                                                                                                                            <div class="three2">{{item.contactsName}}</div>  
+                                                                                                                            <div class="three2">{{item.contactsPost}}</div>  
+                                                                                                                            <div class="three2">{{item.contactsPhone}}</div>  
+                                                                                                                            <div class="three2">{{item.internalRemark}}</div>  
+                                                                                                                            <div class="three2">{{item.suditorRemark}}</div>  
+                                                                                                                            <div class="three2">{{item.activityStartTime}}</div>  
+                                                                                                                            <div class="three2">{{item.activityEndTime}}</div>  
+                                                                                                                            <div class="three2">{{item.status}}</div>  
+                                                                                                                            <div class="three2">{{item.createBy}}</div>  
+                                                                                                                            <div class="three2">{{item.updateBy}}</div>  
+                                                                                                                            <div class="three2">{{item.updateAt}}</div>  
+                                                                                                                            <div class="three2">{{item.createAt}}</div>  
+                                                                                         
+                           
+                            
+                            
+                            
+                            <div class="three3">
+                              
+                                <button class="btn btn-default btn-xs"
+                                        ui-sref="field.storage({id:item.id})">查看
+                                </button>
+                                <button class="btn btn-default btn-xs"  ng-if="globalPermission.updated"
+                                        ui-sref="field.storage({id:item.id})">编辑
+                                </button>
+                                <button class="btn btn-danger btn-xs" ng-if="globalPermission.deleted" data-toggle="modal" data-target="#myModal"
+                                        ng-click="vm.del(item.id, 20)">删除
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<paging ng-if="vm.page" next="{{vm.page}}"></paging>
+

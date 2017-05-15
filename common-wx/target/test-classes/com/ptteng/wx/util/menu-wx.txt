@@ -1,0 +1,20 @@
+{
+    "button": [
+        {
+            "type": "view", 
+            "name": "主页", 
+            "url": "http://www.ptteng.com"
+        }, 
+         {
+            "type": "view", 
+            "name": "魔镜大白", 
+            "url": "http://paper.ptteng.com/p/mirror?module=mirror" 
+        },  
+         {
+            "type": "view", 
+            "name": "我的一生", 
+            "url": "http://paper.ptteng.com/p/paper?module=paper"
+        }
+               
+    ]
+}

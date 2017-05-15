@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<datasources>
+		<ds name="haichuan_audit"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://db.haichuan.audit:3306/haichuan_audit?defaultBatchValue=1000"
+			username="username"
+			password="password!"
+			maxActive="50"
+			maxIdle="50"
+			maxWait="10"
+            check="true"
+		/>
+		 <ds name="idCenterDS"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://gemantic.weibo.db:3306/resources?defaultBatchValue=1000"
+			username="root"
+			password="123456"
+			maxActive=""
+			maxIdle=""
+			maxWait=""
+            check="true"
+		/>  
+	</datasources>
+	<groups>
+		<group name="haichuan_audit" master="haichuan_audit"  />			
+	</groups>
+</root>
+
+

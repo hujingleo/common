@@ -1,0 +1,38 @@
+'use strict';
+angular.module('${project.dbName}')
+    .controller('${cm.uncapitalize($cm.modelClass)}Ctrl', function($state,$scope, $rootScope,$cookies,commonUtil, ${cm.uncapitalize($cm.modelClass)}Service) {
+
+        var vm = $scope.vm = {};
+        
+         vm.params = {    
+          #set($index=0)     
+         #foreach($field in $cm.fields)##
+            #set($index=$index+1)
+	     ${field.cname}: $state.params.${field.cname}
+	       #if($index < $project.molds.size())
+                       ,  
+            #end
+         #end##     
+         };
+
+
+    ${cm.uncapitalize($cm.modelClass)}Service.getList(vm.params).then(function(res) {
+        if (res.data.code === 0) {
+            vm.list = res.data.data;
+            vm.page = {
+                next: res.data.next || 0,
+                size: res.data.size || 0,
+                page: res.data.page || 0,
+                total: res.data.total || 0
+            };
+        } else {
+            |-angularjs-|rootScope.alert(res.data.message);
+        }
+    });
+  
+
+    vm.search = function() {
+        
+        |-angularjs-|state.go("field.${cm.uncapitalize($cm.modelClass)}List", vm.params,{reload:true});
+    };
+    });

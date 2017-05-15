@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:sca="http://www.springframework.org/schema/sca"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+            http://www.springframework.org/schema/sca http://www.springframework.org/schema/sca/spring-sca.xsd">
+
+	<context:component-scan base-package="com.ptteng.haichuan.audit" />
+
+	
+		<sca:service name="teamService"
+		type="com.ptteng.haichuan.audit.service.TeamService" target="teamService" />
+		
+	
+		<sca:service name="memberService"
+		type="com.ptteng.haichuan.audit.service.MemberService" target="memberService" />
+		
+	
+		<sca:service name="leaveService"
+		type="com.ptteng.haichuan.audit.service.LeaveService" target="leaveService" />
+		
+	
+		<sca:service name="lateService"
+		type="com.ptteng.haichuan.audit.service.LateService" target="lateService" />
+		
+	
+		<sca:service name="venderService"
+		type="com.ptteng.haichuan.audit.service.VenderService" target="venderService" />
+		
+	
+		<sca:service name="distributorService"
+		type="com.ptteng.haichuan.audit.service.DistributorService" target="distributorService" />
+		
+	
+		<sca:service name="storageService"
+		type="com.ptteng.haichuan.audit.service.StorageService" target="storageService" />
+		
+	
+		
+	
+	 
+	
+	
+
+
+	
+
+
+
+	
+		
+	<bean id="teamService"
+		class="com.ptteng.haichuan.audit.service.impl.TeamServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="memberService"
+		class="com.ptteng.haichuan.audit.service.impl.MemberServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="leaveService"
+		class="com.ptteng.haichuan.audit.service.impl.LeaveServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="lateService"
+		class="com.ptteng.haichuan.audit.service.impl.LateServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="venderService"
+		class="com.ptteng.haichuan.audit.service.impl.VenderServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="distributorService"
+		class="com.ptteng.haichuan.audit.service.impl.DistributorServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+	<bean id="storageService"
+		class="com.ptteng.haichuan.audit.service.impl.StorageServiceImpl" parent="baseDaoService">
+
+	</bean>
+		
+
+<bean id="dao" class="com.gemantic.dal.dao.impl.CompositeDaoImpl" />
+
+	<bean id="baseDaoService"
+		class="com.ptteng.common.dao.BaseDaoServiceImpl">
+		<property name="dao" ref="dao" />
+	</bean>
+
+
+
+
+
+
+	<!-- performance -->
+	<aop:aspectj-autoproxy />
+	<bean id="aroundLoggingTime" class="com.gemantic.common.stat.aop.time.AroundTimeConsume" />
+	<aop:config>
+		<aop:aspect ref="aroundLoggingTime">
+			<aop:pointcut id="publicServiceMethod"
+				expression="execution(* com.gemantic..service.*.*(..)) " />
+			<aop:around method="around" pointcut-ref="publicServiceMethod" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
+

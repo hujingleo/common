@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0" xmlns:scallop="http://scallop/xmlns/sca/1.0"
+           targetNamespace="http://sns.sohu.com/home/composite" xmlns:sample="http://sns.sohu.com/home/composite" name="HomeComposite">
+	
+
+
+
+
+    	
+	
+	 <!-- HaichuanAuditComponent -->
+	 
+	     <component name = "TeamServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.TeamSCAClient"/>
+    	   
+    	<reference name = "teamService">
+    		<scallop:binding.rmi registryName = "team-haichuan-audit-service-rmi" serviceName="TeamRMIService"/>
+    	</reference>
+    </component >
+        <component name = "MemberServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.MemberSCAClient"/>
+    	   
+    	<reference name = "memberService">
+    		<scallop:binding.rmi registryName = "member-haichuan-audit-service-rmi" serviceName="MemberRMIService"/>
+    	</reference>
+    </component >
+        <component name = "LeaveServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.LeaveSCAClient"/>
+    	   
+    	<reference name = "leaveService">
+    		<scallop:binding.rmi registryName = "leave-haichuan-audit-service-rmi" serviceName="LeaveRMIService"/>
+    	</reference>
+    </component >
+        <component name = "LateServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.LateSCAClient"/>
+    	   
+    	<reference name = "lateService">
+    		<scallop:binding.rmi registryName = "late-haichuan-audit-service-rmi" serviceName="LateRMIService"/>
+    	</reference>
+    </component >
+        <component name = "VenderServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.VenderSCAClient"/>
+    	   
+    	<reference name = "venderService">
+    		<scallop:binding.rmi registryName = "vender-haichuan-audit-service-rmi" serviceName="VenderRMIService"/>
+    	</reference>
+    </component >
+        <component name = "DistributorServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.DistributorSCAClient"/>
+    	   
+    	<reference name = "distributorService">
+    		<scallop:binding.rmi registryName = "distributor-haichuan-audit-service-rmi" serviceName="DistributorRMIService"/>
+    	</reference>
+    </component >
+        <component name = "StorageServiceComponent">
+    	<implementation.java class = "com.ptteng.sca.haichuan.audit.client.StorageSCAClient"/>
+    	   
+    	<reference name = "storageService">
+    		<scallop:binding.rmi registryName = "storage-haichuan-audit-service-rmi" serviceName="StorageRMIService"/>
+    	</reference>
+    </component >
+    	
+	
+</composite>
+

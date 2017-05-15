@@ -1,0 +1,20 @@
+#import <UIKit/UIKit.h>
+
+@interface ${view.name}${view.viewType} : UITableViewCell
+
+
+
+#foreach($field in $view.fields)
+		
+#if($field.publicField == true)
+
+#parse( "${field.fieldTemplatePath}" )
+              
+#end
+#end
+
+
+
+@end
+
+

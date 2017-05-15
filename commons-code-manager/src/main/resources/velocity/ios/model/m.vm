@@ -1,0 +1,15 @@
+#import "${model.name}.h"
+
+@implementation ${model.name}
+
+#if($model.convertJson)##
+
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+  return ${$model.convertJson}
+}
+
+#end##
+
+@end
